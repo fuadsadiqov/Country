@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RestService } from '../services/rest.service';
-import { CountryDetailInterface } from '../models/country-detail.interface';
 
 @Component({
   selector: 'app-country-item',
@@ -12,7 +11,7 @@ import { CountryDetailInterface } from '../models/country-detail.interface';
 export class CountryItemComponent {
   
   public id: any = ''
-  countryItemDetail!: CountryDetailInterface
+  countryItemDetail!: any
   constructor(private activatedRoute: ActivatedRoute, private restService: RestService){
     this.activatedRoute.paramMap.subscribe((params) => {
       this.id = params.get('id')
@@ -20,10 +19,8 @@ export class CountryItemComponent {
     if(this.id){
       this.restService.getCountry()
       .subscribe((res: any) => {
-        const country = res.pageProps.countries.find((item: any) => item.fifa === this.id)
-        this.countryItemDetail = country as CountryDetailInterface;
+        this.countryItemDetail = res.pageProps.countries.find((item: any) => item['cca3'] === this.id)
         console.log(this.countryItemDetail);
-        
       })      
     }
   } 

@@ -1,5 +1,39 @@
-<p>country-item works!</p>
 
-<div>
-    {{countryItemDetail.name}}
+<div >
+{{countryItemDetail.altSpellings}}
+{{countryItemDetail.borders}}
+{{countryItemDetail.region}}
+{{countryItemDetail.capital}}
+{{countryItemDetail.subregion}} 
+{{countryItemDetail.languages}}
+{{countryItemDetail.gini}}
+</div>
+
+<div class="item" *ngIf="countryItemDetail">
+    <div class="item-left">
+        <div class="item-img">
+            <img width="300" [src]="countryItemDetail.flags.png" alt="">     
+        </div>
+        <div class="item-title">
+            {{countryItemDetail.name.common}}
+        </div>
+        <div class="item-left-bottom">
+            <div>Population 
+                <p>{{countryItemDetail.population}}</p>
+             </div>
+             <div>Area 
+                <p>{{countryItemDetail.area}} km<sup>2</sup></p>
+             </div>
+        </div>
+    </div>
+    <div class="item-right">
+        <ul>
+            <li>Native Names: {{countryItemDetail.name.altSpellings}}</li>
+            <li>Capital: {{countryItemDetail.capital}}</li>
+            <li>Subregion: {{countryItemDetail.subregion}}</li>
+            <li>Capital: {{countryItemDetail.capital}}</li>
+            <li>Bordering countries: {{countryItemDetail.borders}}</li>
+
+        </ul>
+    </div>
 </div>

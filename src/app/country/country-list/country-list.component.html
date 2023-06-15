@@ -1,11 +1,22 @@
-<div class="search-box">
-    <input type="text" (keyup)="searchFunction(inputValue.value)" #inputValue>
+<div class="country" >
+    <div class="search-box">
+        <p class="length">Found {{countryList.length}} countries</p>
+        <input placeholder="Filter by Name" type="text" (keyup)="searchFunction(inputValue.value)" #inputValue>
+    </div>
+        <div class="title-of-list">
+            <p></p>
+            <p class="name" (click)="sortByName()">Name</p>
+            <p class="population" (click)="sortByPopulation()">Population</p>
+            <p class="area" (click)="sortByArea()">Area (km<sup>2</sup>)</p>
+            <p class="region">Region</p>
+        </div>
+        <ng-container *ngFor="let item of (filteredCountryList ? filteredCountryList : countryList)">
+            <div class="item" routerLink="/country/{{item.query}}">
+                <p class="item-img"><img width="50" [src]="item.flag" alt=""></p>
+                <p class="item-name">{{item.name}}</p>
+                <p class="item-population">{{item.population}}</p>
+                <p class="item-area">{{item.area}}</p>
+                <p class="item-region">{{item.region}}</p>
+            </div>
+        </ng-container>
 </div>
-<ng-container *ngFor="let item of (filteredCountryList ? filteredCountryList : countryList)">
-    <a routerLink="/country/{{item.fifa}}" class="item">
-        {{item.name}}
-        {{item.population}}
-        {{item.area}}
-        <img width="30" [src]="item.flag" alt=""> <br>
-    </a>
-</ng-container>

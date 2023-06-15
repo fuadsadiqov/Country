@@ -19,7 +19,6 @@ export class RestService{
       map((res: any) => {
         const country = res.pageProps.countries.find((item: any) => item.fifa === id);
         console.log(country);
-        
         return country;
       })
     );

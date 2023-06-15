@@ -4,4 +4,6 @@ export interface CountryListInterface{
     area: number
     flag: string
     fifa: string
+    query: string
+    region: string
 }

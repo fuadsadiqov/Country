@@ -1,5 +1,5 @@
-
-<div >
+<!-- 
+<div>
 {{countryItemDetail.altSpellings}}
 {{countryItemDetail.borders}}
 {{countryItemDetail.region}}
@@ -7,15 +7,18 @@
 {{countryItemDetail.subregion}} 
 {{countryItemDetail.languages}}
 {{countryItemDetail.gini}}
-</div>
+</div> -->
 
 <div class="item" *ngIf="countryItemDetail">
     <div class="item-left">
         <div class="item-img">
-            <img width="300" [src]="countryItemDetail.flags.png" alt="">     
+            <a href="{{countryItemDetail.maps.googleMaps}}">
+                <img width="300" [src]="countryItemDetail.flags.png" alt="">
+            </a>    
         </div>
         <div class="item-title">
             {{countryItemDetail.name.common}}
+            <small>{{countryItemDetail.region}}</small>
         </div>
         <div class="item-left-bottom">
             <div>Population 
@@ -28,12 +31,14 @@
     </div>
     <div class="item-right">
         <ul>
-            <li>Native Names: {{countryItemDetail.name.altSpellings}}</li>
-            <li>Capital: {{countryItemDetail.capital}}</li>
-            <li>Subregion: {{countryItemDetail.subregion}}</li>
-            <li>Capital: {{countryItemDetail.capital}}</li>
-            <li>Bordering countries: {{countryItemDetail.borders}}</li>
-
+            <li>Native Names <span>{{countryItemDetail.altSpellings}}</span>                    
+            </li>
+            <li>Capital <span>{{countryItemDetail.capital}}</span></li>
+            <li>Subregion <span>{{countryItemDetail.subregion}}</span></li>
+            <li>Capital <span>{{countryItemDetail.capital}}</span></li>
+            <li>Languages {{countryItemDetail.languages}}</li>
+            <li>Bordering countries 
+            </li>
         </ul>
     </div>
 </div>

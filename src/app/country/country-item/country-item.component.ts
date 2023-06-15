@@ -23,5 +23,7 @@ export class CountryItemComponent {
         console.log(this.countryItemDetail);
       })      
     }
+    console.log(this.countryItemDetail);
+    
   } 
 }

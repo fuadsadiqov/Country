@@ -1,17 +1,27 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { countryData } from 'src/data';
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RestService {
-  countries: any = countryData;
-
-  constructor() { }
-
+export class RestService{
+  baseUrl: string = 'https://world-ranks-ruby-xi.vercel.app/_next/data/Vhmj_S6cn6K3nK0NSclVI/index.json'
+  
+  constructor(private http: HttpClient) {}
+  
+  getCountry(){
+    return this.http.get(this.baseUrl)
+  }
   getCountryItem(id: string): Observable<any> {
-    const country = this.countries.find((item: any) => item.fifa === id);
-    return of(country);
+    return this.http.get(this.baseUrl).pipe(
+      map((res: any) => {
+        const country = res.pageProps.countries.find((item: any) => item.fifa === id);
+        console.log(country);
+        
+        return country;
+      })
+    );
   }
 }

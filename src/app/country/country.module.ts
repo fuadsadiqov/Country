@@ -5,7 +5,7 @@ import { AppComponent } from '../app.component';
 import { CountryListComponent } from './country-list/country-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CountryComponent } from './country/country.component';
-
+import { HttpClientModule } from '@angular/common/http'
 
 const routes: Routes = [
   {path: '', component: CountryListComponent},
@@ -21,7 +21,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   exports: [RouterModule]
   

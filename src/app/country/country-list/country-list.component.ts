@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { countryData } from 'src/data'
 import { CountryListInterface } from '../models/country-list.interface';
+import { RestService } from '../services/rest.service';
 
 @Component({
   selector: 'app-country-list',
@@ -8,16 +8,21 @@ import { CountryListInterface } from '../models/country-list.interface';
   styleUrls: ['./country-list.component.scss']
 })
 export class CountryListComponent {
-  data: any = countryData
   filteredCountryList!: CountryListInterface[]
-  countryList: CountryListInterface[] = this.data.map((item: any) => ({
-    name: item.name.common,
-    population: item.population,
-    area: item.area,
-    flag: item.flags.png,
-    fifa: item.fifa
-  })) 
+  countryList: CountryListInterface[] = []
 
+  constructor(private restService: RestService){
+    this.restService.getCountry()
+    .subscribe((res: any) => {      
+      this.countryList = res.pageProps.countries.map((item: any) => ({        
+        name: item.name.common,
+        population: item.population,
+        area: item.area,
+        flag: item.flags.png,
+        fifa: item.fifa
+      }))
+    })
+  }
   
   searchFunction(value: string){
     this.filteredCountryList = this.countryList.filter((item: CountryListInterface) => item.name.toLowerCase().includes(value.toLowerCase()))

@@ -1,4 +1,4 @@
-<div class="country" >
+<div class="country">
     <div class="search-box">
         <p class="length">Found {{countryList.length}} countries</p>
         <input placeholder="Filter by Name" type="text" (keyup)="searchFunction(inputValue.value)" #inputValue>
@@ -10,7 +10,7 @@
             <p class="area" (click)="sortByArea()">Area (km<sup>2</sup>)</p>
             <p class="region">Region</p>
         </div>
-        <ng-container *ngFor="let item of (filteredCountryList ? filteredCountryList : countryList)">
+        <ng-container *ngFor="let item of filteredCountryList">
             <button class="item" routerLink="/country/{{item.query}}">
                 <p class="item-img"><img width="50" [src]="item.flag" alt=""></p>
                 <p class="item-name">{{item.name}}</p>
@@ -19,4 +19,9 @@
                 <p class="item-region">{{item.region}}</p>
             </button>
         </ng-container>
+</div>
+<div class="btn-wrapper">
+    <ng-container  g-container *ngFor="let item of pagingNumber">
+        <button class="paging-btn" (click)="activePage(item - 1)">{{item}}</button>
+    </ng-container>
 </div>

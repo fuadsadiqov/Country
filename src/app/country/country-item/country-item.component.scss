@@ -4,6 +4,7 @@
     gap: 10px;
     color: #000;
     .item-left{
+        height: max-content;
         background-color: #FFF;
         padding: 15px;
         border-radius: 5px;
@@ -29,6 +30,7 @@
             justify-content: space-between;
             align-items: center;
             text-align: center;
+            padding-bottom: 8px;
             color: #CCC;
             p{
                 color: #000;
@@ -52,6 +54,24 @@
                 span{
                     color: #4169e1;
                 }
+                .border-wrapper{
+                    margin-top: 10px;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                    gap: 15px;
+                    justify-items: center;
+                    .border-item{
+                        img{
+                            max-width: 150px;
+                            width: 100%;
+                            border-radius: 5px;
+                            
+                        }
+                    }
+                }
+            }
+            & .border-list{
+                display: block;
             }
         }
     }

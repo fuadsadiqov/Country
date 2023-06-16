@@ -35,9 +35,17 @@
             </li>
             <li>Capital <span>{{countryItemDetail.capital}}</span></li>
             <li>Subregion <span>{{countryItemDetail.subregion}}</span></li>
-            <li>Capital <span>{{countryItemDetail.capital}}</span></li>
+            <!-- <li>Capital <span>{{countryItemDetail.capital}}</span></li> -->
             <li>Languages {{countryItemDetail.languages}}</li>
-            <li>Bordering countries 
+            <li class="border-list">Bordering countries <br>
+                <div class="border-wrapper">
+                    <ng-container *ngFor="let borderItem of borderCountryWrapper">
+                        <a [routerLink]="['/country', borderItem['cca3']]" routerLinkActive="router-link-active"  class="border-item">
+                            <img [src]="borderItem.flags.png" alt="borderItem.name.common">
+                            <p>{{borderItem.name.common}}</p>
+                        </a>
+                    </ng-container>
+                </div> 
             </li>
         </ul>
     </div>

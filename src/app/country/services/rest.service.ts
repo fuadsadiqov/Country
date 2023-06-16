@@ -7,14 +7,14 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class RestService{
-  baseUrl: string = 'https://world-ranks-ruby-xi.vercel.app/_next/data/Vhmj_S6cn6K3nK0NSclVI/index.json'
+  private baseUrl: string = 'https://world-ranks-ruby-xi.vercel.app/_next/data/Vhmj_S6cn6K3nK0NSclVI/index.json'
   
   constructor(private http: HttpClient) {}
   
-  getCountry(){
+  public getCountry(){
     return this.http.get(this.baseUrl)
   }
-  getCountryItem(id: string): Observable<any> {
+  public getCountryItem(id: string): Observable<any> {
     return this.http.get(this.baseUrl).pipe(
       map((res: any) => {
         const country = res.pageProps.countries.find((item: any) => item.fifa === id);
@@ -23,7 +23,7 @@ export class RestService{
       })
     );
   }
-  getBorderCountries(){
-    return
+  public getBorderCountries(query: string){
+    return this.http.get('https://restcountries.com/v3.1/alpha/' + query)
   }
 }

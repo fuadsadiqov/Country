@@ -8,22 +8,30 @@ import { RestService } from '../services/rest.service';
   styleUrls: ['./country-item.component.scss']
 })
 
-export class CountryItemComponent {
+export class CountryItemComponent{
   
   public id: any = ''
-  countryItemDetail!: any
-  constructor(private activatedRoute: ActivatedRoute, private restService: RestService){
+  public countryItemDetail!: any
+  public borderCountryWrapper: any[] = []
+
+  constructor(private activatedRoute: ActivatedRoute, private restService: RestService) {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.id = params.get('id')
+        this.restService.getCountry()
+        .subscribe((res: any) => {
+          this.countryItemDetail = res.pageProps.countries.find((item: any) => item['cca3'] === this.id)
+          // console.log(this.countryItemDetail);
+          this.countryItemDetail.borders.map((item: any) => {
+            this.restService.getBorderCountries(item)
+            .subscribe((borderRes: any) => {
+              this.borderCountryWrapper = [...this.borderCountryWrapper, borderRes[0]]             
+            })
+            this.borderCountryWrapper = []
+          })
+        })
     })
-    if(this.id){
-      this.restService.getCountry()
-      .subscribe((res: any) => {
-        this.countryItemDetail = res.pageProps.countries.find((item: any) => item['cca3'] === this.id)
-        console.log(this.countryItemDetail);
-      })      
-    }
-    console.log(this.countryItemDetail);
-    
+  
   } 
+  
+  
 }

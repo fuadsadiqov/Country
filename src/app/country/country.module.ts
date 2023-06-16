@@ -5,11 +5,12 @@ import { AppComponent } from '../app.component';
 import { CountryListComponent } from './country-list/country-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CountryComponent } from './country/country.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './not-found/not-found.component'
 
 const routes: Routes = [
   {path: '', component: CountryListComponent},
-  {path: 'country/:id', component: CountryItemComponent}
+  {path: 'country/:id', component: CountryItemComponent},
 ];
 
 @NgModule({
@@ -18,6 +19,7 @@ const routes: Routes = [
     AppComponent,
     CountryListComponent,
     CountryComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,

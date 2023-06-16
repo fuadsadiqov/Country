@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0 10px;
     .search-box{
         max-width: 500px;
         width: 100%;
@@ -66,9 +67,26 @@
         }
     }
 }
+.btn-wrapper{
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+    gap: 10px;
+    .paging-btn{
+        border: 1px solid #4169e1;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        &:hover{
+            background-color: #4169e1;
+            color: #FFF;
+        }
+    }
+}
 @media (max-width: 768px){
     .country{
         .title-of-list{
+            .img,
             .area,
             .region{
                 display: none;
@@ -83,20 +101,12 @@
             }
         }
     }
-}
-.btn-wrapper{
-    display: flex;
-    justify-content: center;
-    margin: 50px 0;
-    .paging-btn{
-        border: 1px solid #4169e1;
-        border-radius: 5px;
-        padding: 5px 10px;
-        margin-right: 10px;
-        cursor: pointer;
-        &:hover{
-            background-color: #4169e1;
-            color: #FFF;
+    .btn-wrapper{
+        flex-wrap: wrap;
+        gap: 2px;
+        .paging-btn{
+            font-size: 10px;
+            padding: 3px 5px;
         }
     }
 }

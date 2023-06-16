@@ -16,7 +16,7 @@ export class CountryListComponent {
 
   constructor(private restService: RestService){
     this.restService.getCountry()
-    .subscribe((res: any) => {      
+    .subscribe((res: any) => {            
       this.countryList = res.pageProps.countries.map((item: any) => ({        
         name: item.name.common,
         population: item.population,

@@ -20,14 +20,16 @@ export class CountryItemComponent{
         this.restService.getCountry()
         .subscribe((res: any) => {
           this.countryItemDetail = res.pageProps.countries.find((item: any) => item['cca3'] === this.id)
-          // console.log(this.countryItemDetail);
-          this.countryItemDetail.borders.map((item: any) => {
-            this.restService.getBorderCountries(item)
-            .subscribe((borderRes: any) => {
-              this.borderCountryWrapper = [...this.borderCountryWrapper, borderRes[0]]             
+          console.log(this.countryItemDetail);
+          if(this.countryItemDetail.borders){
+            this.countryItemDetail.borders.map((item: any) => {
+              this.restService.getBorderCountries(item)
+              .subscribe((borderRes: any) => {
+                this.borderCountryWrapper = [...this.borderCountryWrapper, borderRes[0]]             
+              })
+              this.borderCountryWrapper = []
             })
-            this.borderCountryWrapper = []
-          })
+          }
         })
     })
   

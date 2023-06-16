@@ -1,18 +1,7 @@
-<!-- 
-<div>
-{{countryItemDetail.altSpellings}}
-{{countryItemDetail.borders}}
-{{countryItemDetail.region}}
-{{countryItemDetail.capital}}
-{{countryItemDetail.subregion}} 
-{{countryItemDetail.languages}}
-{{countryItemDetail.gini}}
-</div> -->
-
 <div class="item" *ngIf="countryItemDetail">
     <div class="item-left">
         <div class="item-img">
-            <a href="{{countryItemDetail.maps.googleMaps}}">
+            <a target="_blank" href="{{countryItemDetail.maps.googleMaps}}">
                 <img width="300" [src]="countryItemDetail.flags.png" alt="">
             </a>    
         </div>
@@ -31,13 +20,18 @@
     </div>
     <div class="item-right">
         <ul>
-            <li>Native Names <span>{{countryItemDetail.altSpellings}}</span>                    
+            <li *ngIf="countryItemDetail.altSpellings">Native Names <span>{{countryItemDetail.altSpellings  }}</span>                    
             </li>
-            <li>Capital <span>{{countryItemDetail.capital}}</span></li>
-            <li>Subregion <span>{{countryItemDetail.subregion}}</span></li>
-            <!-- <li>Capital <span>{{countryItemDetail.capital}}</span></li> -->
-            <li>Languages {{countryItemDetail.languages}}</li>
-            <li class="border-list">Bordering countries <br>
+            <li *ngIf="countryItemDetail.capital">Capital <span>{{countryItemDetail.capital}}</span></li>
+            <li *ngIf="countryItemDetail.subregion">Subregion <span>{{countryItemDetail.subregion}}</span></li>
+            <li *ngIf="countryItemDetail.postalCode">Postal Code <span>{{countryItemDetail.postalCode.format}}</span></li>
+            <li *ngIf="countryItemDetail.currencies">Currencies
+                <span> <span *ngFor="let currency of countryItemDetail.currencies | keyvalue">{{ currency.key }}</span></span>
+              </li>
+            <li *ngIf="countryItemDetail.languages">Language
+                <span> <span *ngFor="let language of countryItemDetail.languages | keyvalue">{{ language.value }}, </span></span>
+              </li>
+            <li *ngIf="countryItemDetail.borders" class="border-list">Bordering countries <br>
                 <div class="border-wrapper">
                     <ng-container *ngFor="let borderItem of borderCountryWrapper">
                         <a [routerLink]="['/country', borderItem['cca3']]" routerLinkActive="router-link-active"  class="border-item">
